@@ -1,0 +1,4 @@
+llm baseline prompt - "You will be provided with a block of text, and your task is to extract a list of keywords from it."
+
+More options where tesed, including asking for ranking the words - which results very poor results and thats why the selected prompt uses "keywords" which worked much better.
+There where expriments with zero,one,5 shots.
