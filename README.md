@@ -14,17 +14,18 @@ pAML - pretrained attribution model
 
 AML - instance-specific finetuned attribution model
 
-## Running AML
+## Config
 All datasets, models and amounts are in config/tasks.py.
 
 Llama model should be local (huggingface meta llama model requirements).
 We used - meta-llama/Llama-2-7b-hf model.
 
-DistilBERT - ag-news - we did not fined a finetuned-model. 
+DistilBERT - ag-news - we did not find a finetuned-model. 
 We trained one and we will upload it to huggingface.
 
-Datasets size are the original datasets size, unless defined otherwise.
+Datasets sizes are the original datasets size, unless defined otherwise.
 
+## Running AML
 Examples of running our method on BERT and LLAMA:
 ```
 runs/run_bert.py
