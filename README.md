@@ -1,7 +1,7 @@
 # Implementation of Attributive Masking Learning (AML)
 
 <p align="center">
-  <img width="600" height="450" src="examples.png" alt="ViT" title="ViT">
+  <img width="1400" height="450" src="examples.png" alt="ViT" title="ViT">
 </p>
 
 ## Introduction
