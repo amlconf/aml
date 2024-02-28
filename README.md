@@ -23,7 +23,7 @@ We used - meta-llama/Llama-2-7b-hf model.
 DistilBERT - ag-news - we did not find a finetuned-model. 
 We trained one and we will upload it to huggingface.
 
-Datasets sizes are the original datasets size, unless defined otherwise.
+Datasets sizes are the original datasets sizes, unless defined otherwise.
 
 ## Running AML
 Examples of running our method on BERT and LLAMA:
