@@ -95,15 +95,10 @@ class AmlModel(pl.LightningModule):
                 nan_indices = torch.isnan(_item_tokens_attribution)
                 _item_tokens_attribution[nan_indices] = 0 # shouldnt happen
 
-        # print(f"explained_tokens_attribution: {explained_tokens_attribution}")
-        # print("6" * 200)
 
         explained_tokens_attribution, explained_special_tokens_indices = self.special_tokens_handler(
             batch[EXPLAINED_INPUT_IDS_NAME], explained_tokens_attribution, self.explained_special_tokens,
             _is_return_special_tokens_indices = True, _replacement_value = 1)
-
-        # print(f"explained_tokens_attribution: {explained_tokens_attribution}")
-        # print("*" * 200)
 
         explained_model_perturbed_inputs_logits, inverse_explained_model_perturbed_inputs_logits = self.forward_with_token_attributions(
             batch, explained_tokens_attribution, explained_special_tokens_indices = explained_special_tokens_indices)
@@ -204,7 +199,7 @@ class AmlModel(pl.LightningModule):
 
         input_ids, attention_mask, inputs_embeds, inserted_label_token_indices, long_vectors = self.insert_label_token_embeddings_to_interpreter(
             explained_model_probabilities, input_ids, attention_mask)
-        # print("^"*100)
+
         # try:
         #     print(f"self.interpreter_model(input_ids = input_ids: {input_ids}. {inputs_embeds.shape}")
         # except Exception as e:
@@ -246,9 +241,6 @@ class AmlModel(pl.LightningModule):
         return new_tokens_attr
 
     def transform_tokens_attr_handler(self, tokens_attr, batch):
-        # print("Q" * 100)
-        # print(f'batch: {batch}')
-        # print("Q" * 100)
         if is_model_encoder_only(ExpArgs.explained_model_backbone):
             return tokens_attr
         new_tokens_attr = []
@@ -259,17 +251,8 @@ class AmlModel(pl.LightningModule):
                     new_tokens_attr_lst.append(torch.tensor(0).cuda())
                     continue
 
-                # print("-" * 200)
-                # print(f"indices: {indices}")
-                # print("O" * 200)
-                # print(f"tokens_attr: {tokens_attr}")
-                # print("#" * 200)
                 scores = tokens_attr[batch_idx][indices]
-                # print(f"scores: {str(scores)}")
-                # print("!" * 200)
                 scores = [v for v in scores if not math.isnan(v)]
-                # print(f"scores: {scores}")
-                # print("T" * 200)
                 pooled_score = torch.tensor(NAN_FLOAT).to(self.device)
                 if len(scores) > 0:
                     scores = torch.stack(scores)
